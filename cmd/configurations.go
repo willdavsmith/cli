@@ -15,7 +15,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var ConfigurtionsCmd = &cobra.Command{
+var ConfigurationsCmd = &cobra.Command{
 	Use:   "configurations",
 	Short: "List all Dapr configurations",
 	Run: func(cmd *cobra.Command, args []string) {
@@ -38,7 +38,7 @@ var ConfigurtionsCmd = &cobra.Command{
 }
 
 func init() {
-	ConfigurtionsCmd.Flags().BoolVarP(&kubernetesMode, "kubernetes", "k", false, "List all Dapr configurations in a k8s cluster")
-	ConfigurtionsCmd.MarkFlagRequired("kubernetes")
-	RootCmd.AddCommand(ConfigurtionsCmd)
+	ConfigurationsCmd.Flags().BoolVarP(&kubernetesMode, "kubernetes", "k", false, "List all Dapr configurations in a k8s cluster")
+	ConfigurationsCmd.MarkFlagRequired("kubernetes")
+	RootCmd.AddCommand(ConfigurationsCmd)
 }

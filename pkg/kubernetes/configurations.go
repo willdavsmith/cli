@@ -13,8 +13,8 @@ import (
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// ComponentsOutput represent a Dapr component.
-type ConfigurtionsOutput struct {
+// ConfigurationsOutput represent a Dapr configuration.
+type ConfigurationsOutput struct {
 	Name            string `csv:"Name"`
 	TracingEnabled  bool   `csv:"TRACING-ENABLED"`
 	MTLSEnabled     bool   `csv:"MTLS-ENABLED"`
@@ -24,8 +24,8 @@ type ConfigurtionsOutput struct {
 	Created         string `csv:"CREATED"`
 }
 
-// List outputs all Dapr configurations.
-func Configurations() ([]ConfigurtionsOutput, error) {
+// Configurations outputs all Dapr configurations.
+func Configurations() ([]ConfigurationsOutput, error) {
 	client, err := DaprClient()
 	if err != nil {
 		return nil, err
@@ -36,9 +36,9 @@ func Configurations() ([]ConfigurtionsOutput, error) {
 		return nil, err
 	}
 
-	co := []ConfigurtionsOutput{}
+	co := []ConfigurationsOutput{}
 	for _, c := range confs.Items {
-		co = append(co, ConfigurtionsOutput{
+		co = append(co, ConfigurationsOutput{
 			TracingEnabled:  tracingEnabled(c.Spec.TracingSpec),
 			Name:            c.GetName(),
 			MTLSEnabled:     c.Spec.MTLSSpec.Enabled,
